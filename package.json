@@ -1,5 +1,5 @@
 {
-  "name": "babel-minify-webpack-plugin",
+  "name": "babel-minify-webpack-plugin-marcello",
   "version": "0.1.0",
   "description": "Babel Minify Plugin for Webpack",
   "main": "lib/index.js",
