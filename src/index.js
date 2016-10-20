@@ -1,7 +1,6 @@
 "use strict";
 
 const babel = require("babel-core");
-const babiliPreset = require("babel-preset-babili");
 const {SourceMapSource, RawSource} = require("webpack-sources");
 
 module.exports = class BabiliPlugin {
@@ -19,6 +18,7 @@ module.exports = class BabiliPlugin {
     const useSourceMap = typeof options.sourceMap === "undefined"
       ? !!compiler.options.devtool
       : options.sourceMap;
+    const presets = options.presets || [ require("babel-preset-babili") ];
 
     compiler.plugin("compilation", function (compilation) {
       if (useSourceMap) {
@@ -64,7 +64,7 @@ module.exports = class BabiliPlugin {
 
               // do the transformation
               const result = babel.transform(input, {
-                presets: [babiliPreset],
+                presets: presets,
                 sourceMaps: useSourceMap,
                 babelrc: false,
                 inputSourceMap,
